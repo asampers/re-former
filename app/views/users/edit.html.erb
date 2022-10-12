@@ -1,5 +1,15 @@
 <h2>Edit this User: </h2>
 
+<% if @user.errors.any? %>
+  <h3><%= pluralize(@user.errors.count, 'error') %> prohibited this user from being saved: </h3>
+
+  <ul>
+    <%= @user.errors.each do |error| %>
+      <li><%= error.full_message %></li>
+    <% end %>  
+  </ul>
+<% end %>  
+
 <%= form_with model: @user do |form| %>
   <%= form.label :username, 'Username: ' %>
   <%= form.text_field :username, placeholder: "user123" %>
